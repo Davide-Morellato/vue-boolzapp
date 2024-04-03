@@ -219,7 +219,7 @@ body{
 
 .sent,
 .received{
-    width: 50%;
+    width: 40%;
     padding: 15px 15px 40px;
     border-radius: 20px;  
 }
