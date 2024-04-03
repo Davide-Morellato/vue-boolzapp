@@ -3,6 +3,7 @@ const { createApp } = Vue;
 createApp({
   data() {
     return {
+      currentContact: 0,
       contacts: [
         {
           name: "Michele",
@@ -168,4 +169,8 @@ createApp({
       ],
     };
   },
+
+  mounted(){
+    console.log(this.contacts[1].messages[1].status)
+  }
 }).mount("#app");

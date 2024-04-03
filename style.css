@@ -103,12 +103,12 @@ body{
 .profiles-list > li,
 .chat-header{
     padding: 10px;
-    height: 80px;
+    height: 70px;
 }
 
 .chat-footer{
     padding: 10px;
-    height: 70px;
+    height: 60px;
 }
 
 
@@ -217,19 +217,19 @@ body{
     gap: 20px;
 }
 
-.send-mex,
-.recive-mex{
-    max-width: 60%;
-    padding: 15px 15px 60px;
+.sent,
+.received{
+    width: 50%;
+    padding: 15px 15px 40px;
     border-radius: 20px;  
 }
 
-.send-mex{
+.sent{
     align-self: flex-end;
     background-color: rgb(222, 248, 192);
 }
 
-.recive-mex{
+.received{
     align-self: flex-start;
     background-color: white;
 }
@@ -397,7 +397,7 @@ body{
     }
     
     .chat-body-mex{
-        padding: 90px 120px;
+        padding: 40px 35px;
     }
 
 }
