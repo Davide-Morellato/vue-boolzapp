@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <link rel="stylesheet" href="./style.css">
+        <script src="https://kit.fontawesome.com/a6da3727fa.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+        <title>Boolzapp</title>
+    </head>
+
+
+    <body>
+        <div id="app">
+            <div class="container">
+                <div class="sidebar">
+                    <div class="sidebar-header bg-lightgrey">
+                        <figure>
+                            <img  class="profile-img" src="./img/avatar_io.jpg" alt="">
+                        </figure>
+
+                        <ul class="tools-list">
+                            <li>
+                                <a href="#">
+                                    <i class="fa-solid fa-circle-notch"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa-solid fa-message"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-notice bg-cyan">
+                        <figure class="sidebar-notice-bell">
+                            <i class="fa-solid fa-bell-slash sidebar-bell"></i>
+                        </figure>
+                        <figcaption>
+                            <h3>Ricevi notifiche di nuovi messaggi</h3>
+                            <a href="#">
+                                Attiva notifiche desktop
+                            </a>
+                        </figcaption>
+                    </div>
+                    <div class="sidebar-search-bar">
+                        <input class="bar" type="search" placeholder="Cerca o inizia una nuova chat">
+                    </div>
+
+                    <div class="card">
+                        <ul class="profiles-list">
+                            <li> 
+                                <figure class="sidebar-profile">
+                                    <img class="profile-img" src="./img/avatar_1.jpg" alt="">
+                                    <div class="profile-status">
+                                        <h4><strong>Michele</strong></h4>
+                                        <span class="font-lightgrey">Lorem ipsum dolor sit.</span>
+                                    </div>
+                                </figure>
+                                <span class="font-lightgrey">16:26</span>
+                            </li>
+                            <li>
+                                <figure class="sidebar-profile">
+                                    <img class="profile-img" src="./img/avatar_2.jpg" alt="">
+                                    <div class="profile-status">
+                                        <h4><strong>Fabio</strong></h4>
+                                        <span class="font-lightgrey">Lorem ipsum dolor sit.</span>
+                                    </div>
+                                </figure>
+                                <span class="font-lightgrey">16:05</span>
+                            </li>
+                            <li>
+                                <figure class="sidebar-profile">
+                                    <img class="profile-img" src="./img/avatar_3.jpg" alt="">
+                                    <div class="profile-status">
+                                        <h4><strong>Samuele</strong></h4>
+                                        <span class="font-lightgrey">Lorem ipsum dolor sit.</span>
+                                    </div>
+                                </figure>
+                                <span class="font-lightgrey">16:03</span>
+                            </li>
+                            <li>
+                                <figure class="sidebar-profile">
+                                    <img class="profile-img" src="./img/avatar_4.jpg" alt="">
+                                    <div class="profile-status">
+                                        <h4><strong>Alessandro B.</strong></h4>
+                                        <span class="font-lightgrey">Lorem ipsum dolor sit.</span>
+                                    </div>
+                                </figure>
+                                <span class="font-lightgrey">15:50</span>
+                            </li>
+                            <li>
+                                <figure class="sidebar-profile">
+                                    <img class="profile-img" src="./img/avatar_5.jpg" alt="">
+                                    <div class="profile-status">
+                                        <h4><strong>Alessandro L.</strong></h4>
+                                        <span class="font-lightgrey">Lorem ipsum dolor sit.</span>
+                                    </div>
+                                </figure>
+                                <span class="font-lightgrey">15:45</span>
+                            </li>
+                            <li>
+                                <figure class="sidebar-profile">
+                                    <img class="profile-img" src="./img/avatar_6.jpg" alt="">
+                                    <div class="profile-status">
+                                        <h4><strong>Claudia</strong></h4>
+                                        <span class="font-lightgrey">Lorem ipsum dolor sit.</span>
+                                    </div>
+                                </figure>
+                                <span class="font-lightgrey">15:40</span>
+                            </li>
+                            <li>
+                                <figure class="sidebar-profile">
+                                    <img class="profile-img" src="./img/avatar_7.jpg" alt="">
+                                    <div class="profile-status">
+                                        <h4><strong>Federico</strong></h4>
+                                        <span class="font-lightgrey">Lorem ipsum dolor sit.</span>
+                                    </div>
+                                </figure>
+                                <span class="font-lightgrey">15:22</span>
+                            </li>
+                            <li>
+                                <figure class="sidebar-profile">
+                                    <img class="profile-img" src="./img/avatar_8.jpg" alt="">
+                                    <div class="profile-status">
+                                        <h4><strong>Davide</strong></h4>
+                                        <span class="font-lightgrey">Lorem ipsum dolor sit.</span>
+                                    </div>
+                                </figure>
+                                <span class="font-lightgrey">15:15</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="chat">    
+                    <div class="chat-header bg-lightgrey">
+                        <div class="chatbar-profile">
+                            <img class="profile-img" src="./img/avatar_8.jpg" alt="">
+                            <div class="profile-status">
+                                <h4><strong>Davide</strong></h4>
+                                <span class="font-lightgrey">Lorem ipsum dolor sit.</span>
+                            </div>
+                            <ul class="tools-list">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa-solid fa-paperclip"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="chat-body">
+                        <div class="chat-body-mex">
+                            <div class="send-mex pos-relative">
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Non odit exercitationem cupiditate laborum ut voluptas aliquid voluptatum, eligendi dolorum tempore ipsum assumenda. Quos quod quam sed accusamus expedita quibusdam nesciunt?
+                                </p>
+                                <span class="time pos-absolute font-lightgrey">16:13</span>
+                                <span class="chevron-icon font-lightgrey pos-absolute">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </span>
+                                <ul class="menu-hover">
+                                    <li>
+                                        <a href="#">
+                                            Cerca
+                                        </a>    
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            Modifica
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            Seleziona Tutto
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="recive-mex pos-relative">
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Non odit exercitationem cupiditate laborum ut voluptas aliquid voluptatum, eligendi dolorum tempore ipsum assumenda. Quos quod quam sed accusamus expedita quibusdam nesciunt?
+                                </p>
+                                <span class="time pos-absolute font-lightgrey">16:15</span>
+                                <span class="chevron-icon font-lightgrey pos-absolute">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </span>
+                                <ul class="menu-hover">
+                                    <li>
+                                        <a href="#">
+                                            Cerca
+                                        </a>    
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            Modifica
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            Seleziona Tutto
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-footer bg-lightgrey">
+                        <ul class="tools-list">
+                            <li class="d-none d-flex">
+                                <a href="#">
+                                    <i class="fa-regular fa-face-smile"></i>
+                                </a>
+                            </li>
+                            <li class="flex-g">
+                                <input class="bar" type="text" placeholder="Scrivi un messaggio">
+                            </li>
+                            <li class="d-none d-flex">
+                                <a href="#">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        
+                    </div>   
+                </div>
+            </div>
+        </div>
+        
+        <script src="./app.js"></script>
+    </body>
+</html>
