@@ -58,17 +58,20 @@
 
                     <div class="card">
                         <ul class="profiles-list">
-                            <li> 
+                            <li v-for="(element, i) in contacts">  <!-- creo un ciclo v-for per scorrere l'array "contacts" e prendere le proprietà (avatar & name) nell'array stesso -->
                                 <figure class="sidebar-profile">
-                                    <img class="profile-img" src="./img/avatar_1.jpg" alt="">
+                                    <img class="profile-img" :src="element.avatar" :alt="element.name">
                                     <div class="profile-status">
-                                        <h4><strong>Michele</strong></h4>
-                                        <span class="font-lightgrey">Lorem ipsum dolor sit.</span>
+                                        <h4><strong>{{element.name}}</strong></h4>
+                                        <span class="font-lightgrey"
+                                            v-for="(message, i) in contacts[i].messages">  <!-- creo un ciclo v-for per scorrere l'array "messages" annidato all'interno dell'array "contacts" per prendere il messaggio che mi interessa -->
+                                            <!-- {{message.message}} -->
+                                        </span>
                                     </div>
                                 </figure>
                                 <span class="font-lightgrey">16:26</span>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <figure class="sidebar-profile">
                                     <img class="profile-img" src="./img/avatar_2.jpg" alt="">
                                     <div class="profile-status">
@@ -137,7 +140,7 @@
                                     </div>
                                 </figure>
                                 <span class="font-lightgrey">15:15</span>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </div>
@@ -171,10 +174,10 @@
                     </div>
 
                     <div class="chat-body">
-                        <div class="chat-body-mex">
-                            <div class="send-mex pos-relative">
+                        <div class="chat-body-mex" v-for="(messages, i) in contacts">
+                            <div class="send-mex pos-relative" v-for="(message, i) in contacts[i].messages">
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Non odit exercitationem cupiditate laborum ut voluptas aliquid voluptatum, eligendi dolorum tempore ipsum assumenda. Quos quod quam sed accusamus expedita quibusdam nesciunt?
+                                    {{message.message}}
                                 </p>
                                 <span class="time pos-absolute font-lightgrey">16:13</span>
                                 <span class="chevron-icon font-lightgrey pos-absolute">
@@ -199,9 +202,9 @@
                                 </ul>
                             </div>
                             
-                            <div class="recive-mex pos-relative">
+                            <div class="recive-mex pos-relative" v-for="(message, i) in contacts[i].messages">
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Non odit exercitationem cupiditate laborum ut voluptas aliquid voluptatum, eligendi dolorum tempore ipsum assumenda. Quos quod quam sed accusamus expedita quibusdam nesciunt?
+                                    {{message.message}}
                                 </p>
                                 <span class="time pos-absolute font-lightgrey">16:15</span>
                                 <span class="chevron-icon font-lightgrey pos-absolute">
@@ -240,7 +243,7 @@
                             </li>
                             <li class="d-none d-flex">
                                 <a href="#">
-                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    <i style="color: rgb(98, 109, 138);" class="fa-solid fa-microphone"></i>
                                 </a>
                             </li>
                         </ul>
