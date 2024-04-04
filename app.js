@@ -5,7 +5,8 @@ createApp({
     return {
       currentContact: 0,  //creo una proprietà che mi faccia da partenza per l'indice dell'array contacts
       newMessage: '',     //creo unaa proprietà che mi faccia da partenza per il messaggio da inviare
-      search:'',
+      search:'',          //creo una proprietà di partenza per salvare il valore inserito nell'input di testo
+      isShow: [],         //creo un array vuoto in cui inserire i valori booleani isShow
       contacts: [
         {
           name: "Michele",
@@ -172,6 +173,14 @@ createApp({
     };
   },
 
+  mounted(){
+    this.isShow = this.contacts.map(isShow =>{
+      return {
+        shown: true
+      }
+    })
+  },
+
   methods:{
 
     //creo una funzione per indicare che se l'input (richiamato col v-model) NON è vuoto,
@@ -199,5 +208,19 @@ createApp({
         this.newMessage =''
       },2000)
     },
+
+    showMenu(i){
+      if(this.isShow[i] === false){
+        this.isShow[i] = true
+      }else{
+        this.isShow[i] = false
+      }
+    },
+
+    deleteMessage(i){
+      this.contacts[this.currentContact].messages.splice(i, 1);
+
+      this.showMenu(i)
+    }
   }
 }).mount("#app");

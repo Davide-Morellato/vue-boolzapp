@@ -64,7 +64,7 @@
                             <!-- :class="i === currentContact ? 'active' : '' " -->
                             <li class="profile"
                             v-for="(contact, i) in contacts"                                                      
-                            :class="contact.name.toLowerCase().includes(search) || contact.name.toUpperCase().includes(search) ? '' : 'hidden'"
+                            :class="contact.name.toLowerCase().includes(search.toLowerCase()) ? '' : 'hidden'"
                             @click="currentContact = i"
                             >  
                                 <figure class="sidebar-profile">                                                                             
@@ -161,7 +161,7 @@
                             <img class="profile-img" :src="contacts[currentContact].avatar" :alt="contacts[currentContact].name">
                             <div class="profile-status">
                                 <h4><strong>{{contacts[currentContact].name}}</strong></h4>
-                                <span class="font-lightgrey">Lorem ipsum dolor sit.</span>
+                                <span class="font-lightgrey">Ultimo accesso alle ore: {{contacts[currentContact].messages.at(-1).date.slice(11,16)}} </span>
                             </div>
                             <ul class="tools-list">
                                 <li>
@@ -192,26 +192,33 @@
                                     {{currMessage.message}}
                                 </p>
                                 <span class="time pos-absolute font-lightgrey">{{currMessage.date.slice(11,16)}}</span>
-                                <span class="chevron-icon font-lightgrey pos-absolute">
+
+                                <!-- aggiungo l'evento click sull'icona per il menù a tendina -->
+                                <span class="chevron-icon font-lightgrey pos-absolute" @click="showMenu(i)">
                                     <i class="fa-solid fa-chevron-down"></i>
+
+                                    <!-- dichiaro il singolo messaggio su cui mostrare il menù a tendina
+                                         e applico l'evento al click per assegnargli la classe .shown -->
+                                    <ul class="menu-hover" :class="isShow[i] === false ? 'shown' : ''">
+                                        <li>
+                                            <a href="#">
+                                                Seleziona Tutto
+                                            </a>    
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Modifica
+                                            </a>
+                                        </li>
+                                        
+                                        <!-- applico l'evento al click per eliminare il messaggio -->
+                                        <li @click="deleteMessage(i)">
+                                            <a href="#">
+                                                Cancella
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </span>
-                                <ul class="menu-hover">
-                                    <li>
-                                        <a href="#">
-                                            Seleziona Tutto
-                                        </a>    
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            Modifica
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            Cancella
-                                        </a>
-                                    </li>
-                                </ul>
                             </div>
                             
                             <!-- <div class="received pos-relative" v-for="(currMessage, i) in contacts[currentContact].messages">
@@ -261,7 +268,6 @@
                                 </a>
                             </li>
                         </ul>
-                        
                     </div>   
                 </div>
             </div>

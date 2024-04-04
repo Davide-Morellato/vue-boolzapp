@@ -256,19 +256,29 @@ body{
 }
 
 .menu-hover{
-    border: 1px solid black;
+    /* border: 1px solid black; */
     position: absolute;
     top: 26px;
     right: 10px;
-    background-color: lightgrey;
-    z-index: -1;
+    background-color: rgba(211, 211, 211, 0.815);
+    display: none;
     line-height: 1.7em;
+    color: black;
+    width: max-content;
+    border-radius: 10px;
+}
+
+.menu-hover > li{
     padding: 10px;
 }
 
-.chevron-icon:hover + .menu-hover{
-    z-index: 1;
+.menu-hover > li:hover{
+    background-color: white;
+}
 
+.shown{
+    display: block;
+    z-index: 1;
 }
 
 
