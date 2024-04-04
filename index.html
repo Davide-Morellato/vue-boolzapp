@@ -58,7 +58,7 @@
 
                     <div class="card">
                         <ul class="profiles-list">
-                            <li v-for="(contact, i) in contacts" @click="currentContact = i">  <!-- creo un ciclo v-for per scorrere l'array "contacts" e prendere le proprietà (avatar & name) nell'array stesso -->
+                            <li :class="i === currentContact ? 'active' : ''" v-for="(contact, i) in contacts" @click="currentContact = i">  <!-- creo un ciclo v-for per scorrere l'array "contacts" e prendere le proprietà (avatar & name) nell'array stesso -->
                                 <figure class="sidebar-profile">                               <!-- aggiungo l'evento al click per cambiare i messaggi -->
                                     <img class="profile-img" :src="contact.avatar" :alt="contact.name">
                                     <div class="profile-status">
@@ -175,11 +175,11 @@
 
                     <div class="chat-body">
                         <div class="chat-body-mex">
-                            <div class="sent pos-relative" :class="message.status" v-for="(message, i) in contacts[currentContact].messages">
+                            <div class="pos-relative" :class="message.status" v-for="(message, i) in contacts[currentContact].messages">
                                 <p>
                                     {{message.message}}
                                 </p>
-                                <span class="time pos-absolute font-lightgrey">16:13</span>
+                                <span class="time pos-absolute font-lightgrey">{{message.date.slice(11,16)}}</span>
                                 <span class="chevron-icon font-lightgrey pos-absolute">
                                     <i class="fa-solid fa-chevron-down"></i>
                                 </span>

@@ -107,8 +107,7 @@ body{
 }
 
 .chat-footer{
-    padding: 10px;
-    height: 60px;
+    height: 50px;
 }
 
 
@@ -168,7 +167,11 @@ body{
     display: none;
 }
 
-
+.card .active,
+.card li:hover{
+    background-color: rgb(209, 219, 229);
+    cursor: pointer;
+}
 
 /* CHAT */
 
