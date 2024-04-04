@@ -53,23 +53,33 @@
                         </figcaption>
                     </div>
                     <div class="sidebar-search-bar">
-                        <input class="bar" type="search" placeholder="Cerca o inizia una nuova chat">
+                        <input class="bar" type="search" placeholder="Cerca o inizia una nuova chat" v-model="search">
                     </div>
 
                     <div class="card">
                         <ul class="profiles-list">
-                            <li :class="i === currentContact ? 'active' : ''" v-for="(contact, i) in contacts" @click="currentContact = i">  <!-- creo un ciclo v-for per scorrere l'array "contacts" e prendere le proprietà (avatar & name) nell'array stesso -->
-                                <figure class="sidebar-profile">                               <!-- aggiungo l'evento al click per cambiare i messaggi -->
-                                    <img class="profile-img" :src="contact.avatar" :alt="contact.name">
+                            <!-- creo un ciclo v-for per scorrere l'array "contacts" e prendere le proprietà (avatar & name) nell'array stesso
+                                 aggiungo l'evento al click per cambiare i messaggi
+                                 aggiungo la classe .active per indicare quale contatto è stato selezionato -->
+                            <!-- :class="i === currentContact ? 'active' : '' " -->
+                            <li class="profile"
+                            v-for="(contact, i) in contacts"                                                      
+                            :class="contact.name.toLowerCase().includes(search) || contact.name.toUpperCase().includes(search) ? '' : 'hidden'"
+                            @click="currentContact = i"
+                            >  
+                                <figure class="sidebar-profile">                                                                             
+                                    <img class="profile-img" :src="contact.avatar" :alt="contact.name">                                      
                                     <div class="profile-status">
                                         <h4><strong>{{contact.name}}</strong></h4>
-                                        <span class="font-lightgrey"
-                                            v-for="(message, i) in contacts[currentContact].messages">  <!-- creo un ciclo v-for per scorrere l'array "messages" annidato all'interno dell'array "contacts" per prendere il messaggio che mi interessa -->
-                                            <!-- {{message.message}} -->
+
+                                        <!-- prendo l'ultimo messaggio [.at(-1).message] nell'array di messages -->
+                                        <span class="font-lightgrey">  
+                                            {{contact.messages.at(-1).message}}
                                         </span>
                                     </div>
                                 </figure>
-                                <span class="font-lightgrey">16:26</span>
+                                <!-- prendo l'ultimo orario [.at(-1).date.slice(11,16)] nell'array di messages -->
+                                <span class="font-lightgrey">{{contact.messages.at(-1).date.slice(11,16)}}</span>
                             </li>
                             <!-- <li>
                                 <figure class="sidebar-profile">
@@ -175,18 +185,20 @@
 
                     <div class="chat-body">
                         <div class="chat-body-mex">
-                            <div class="pos-relative" :class="message.status" v-for="(message, i) in contacts[currentContact].messages">
+                            <div class="pos-relative"
+                            v-for="(currMessage, i) in contacts[currentContact].messages"
+                            :class="currMessage.status" >
                                 <p>
-                                    {{message.message}}
+                                    {{currMessage.message}}
                                 </p>
-                                <span class="time pos-absolute font-lightgrey">{{message.date.slice(11,16)}}</span>
+                                <span class="time pos-absolute font-lightgrey">{{currMessage.date.slice(11,16)}}</span>
                                 <span class="chevron-icon font-lightgrey pos-absolute">
                                     <i class="fa-solid fa-chevron-down"></i>
                                 </span>
                                 <ul class="menu-hover">
                                     <li>
                                         <a href="#">
-                                            Cerca
+                                            Seleziona Tutto
                                         </a>    
                                     </li>
                                     <li>
@@ -196,13 +208,13 @@
                                     </li>
                                     <li>
                                         <a href="#">
-                                            Seleziona Tutto
+                                            Cancella
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                             
-                            <!-- <div class="received pos-relative" v-for="(message, i) in contacts[i].messages">
+                            <!-- <div class="received pos-relative" v-for="(currMessage, i) in contacts[currentContact].messages">
                                 <p>
                                     {{message.message}}
                                 </p>
@@ -239,7 +251,9 @@
                                 </a>
                             </li>
                             <li class="flex-g">
-                                <input class="bar" type="text" placeholder="Scrivi un messaggio">
+
+                                <!-- aggiungo la presa di valore dall'input e l'evento al press di enter (@keyup.enter) per inviare il messaggio e ricevere poi la risposta (con setInterval)-->
+                                <input v-model="newMessage" @keyup.enter="addMessage" class="bar" type="text" placeholder="Scrivi un messaggio">
                             </li>
                             <li class="d-none d-flex">
                                 <a href="#">

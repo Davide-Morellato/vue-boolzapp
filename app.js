@@ -3,7 +3,9 @@ const { createApp } = Vue;
 createApp({
   data() {
     return {
-      currentContact: 0,
+      currentContact: 0,  //creo una proprietà che mi faccia da partenza per l'indice dell'array contacts
+      newMessage: '',     //creo unaa proprietà che mi faccia da partenza per il messaggio da inviare
+      search:'',
       contacts: [
         {
           name: "Michele",
@@ -170,7 +172,32 @@ createApp({
     };
   },
 
-  mounted(){
-    console.log(this.contacts[1].messages[1].status)
+  methods:{
+
+    //creo una funzione per indicare che se l'input (richiamato col v-model) NON è vuoto,
+    //allora deve inviare (al press dell'enter) il messaggio digitato,
+    //inserendogli un orario (date) e applicargli la classe .sent (status)
+    addMessage(){
+      if(this.newMessage !== ''){
+        this.newMessage = {
+          date:'xx/xx/xxxx 17:00:55',
+          message: this.newMessage,
+          status: 'sent'
+        }
+        this.contacts[this.currentContact].messages.push(this.newMessage)
+        this.newMessage = ''
+      }
+
+      //imposto la funzione per rispondere dopo 2 secondi dall'invio del messaggio
+      setTimeout(() =>{
+        this.newMessage = {
+          message: 'Ehi, merdina!',
+          date:'xx/xx/xxxx 17:02:55',
+          status: 'received'
+        }
+        this.contacts[this.currentContact].messages.push(this.newMessage)
+        this.newMessage =''
+      },2000)
+    },
   }
 }).mount("#app");
