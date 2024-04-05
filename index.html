@@ -199,7 +199,8 @@
 
                                     <!-- dichiaro il singolo messaggio su cui mostrare il menù a tendina
                                          e applico l'evento al click per assegnargli la classe .shown -->
-                                    <ul class="menu-hover" :class="isShow[i] === false ? 'shown' : ''">
+                                    <ul class="menu-hover"
+                                    :class="isShow[i] === false ? 'shown' : ''">
                                         <li>
                                             <a href="#">
                                                 Seleziona Tutto
@@ -260,7 +261,7 @@
                             <li class="flex-g">
 
                                 <!-- aggiungo la presa di valore dall'input e l'evento al press di enter (@keyup.enter) per inviare il messaggio e ricevere poi la risposta (con setInterval)-->
-                                <input v-model="newMessage" @keyup.enter="addMessage" class="bar" type="text" placeholder="Scrivi un messaggio">
+                                <input v-model.trim="newMessage" @keyup.enter="addMessage" class="bar" type="text" placeholder="Scrivi un messaggio">
                             </li>
                             <li class="d-none d-flex">
                                 <a href="#">

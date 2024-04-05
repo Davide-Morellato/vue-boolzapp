@@ -3,10 +3,10 @@ const { createApp } = Vue;
 createApp({
   data() {
     return {
-      currentContact: 0,  //creo una proprietà che mi faccia da partenza per l'indice dell'array contacts
-      newMessage: '',     //creo unaa proprietà che mi faccia da partenza per il messaggio da inviare
-      search:'',          //creo una proprietà di partenza per salvare il valore inserito nell'input di testo
-      isShow: [],         //creo un array vuoto in cui inserire i valori booleani isShow
+      currentContact: 0, //creo una proprietà che mi faccia da partenza per l'indice dell'array contacts
+      newMessage: "", //creo unaa proprietà che mi faccia da partenza per il messaggio da inviare
+      search: "", //creo una proprietà di partenza per salvare il valore inserito nell'input di testo
+      isShow: [], //creo un array vuoto in cui inserire i valori booleani isShow
       contacts: [
         {
           name: "Michele",
@@ -173,54 +173,67 @@ createApp({
     };
   },
 
-  mounted(){
-    this.isShow = this.contacts.map(isShow =>{
+  mounted() {
+
+    //mappo l'array inserendo i valori su cui la funzione [showMenu(i)] deve basarsi 
+    this.isShow = this.contacts.map(() => {
       return {
-        shown: true
-      }
-    })
+        isShowItem: true,
+      };
+    });
   },
 
-  methods:{
-
+  methods: {
     //creo una funzione per indicare che se l'input (richiamato col v-model) NON è vuoto,
     //allora deve inviare (al press dell'enter) il messaggio digitato,
     //inserendogli un orario (date) e applicargli la classe .sent (status)
-    addMessage(){
-      if(this.newMessage !== ''){
-        this.newMessage = {
-          date:'xx/xx/xxxx 17:00:55',
+    addMessage() {
+      if (this.newMessage !== "") {
+        const sendMessage = {
+          date: "xx/xx/xxxx 17:00:55",
           message: this.newMessage,
-          status: 'sent'
-        }
-        this.contacts[this.currentContact].messages.push(this.newMessage)
-        this.newMessage = ''
-      }
+          status: "sent",
+        };
 
-      //imposto la funzione per rispondere dopo 2 secondi dall'invio del messaggio
-      setTimeout(() =>{
-        this.newMessage = {
-          message: 'Ehi, merdina!',
-          date:'xx/xx/xxxx 17:02:55',
-          status: 'received'
-        }
-        this.contacts[this.currentContact].messages.push(this.newMessage)
-        this.newMessage =''
-      },2000)
-    },
+        const sent = this.contacts[this.currentContact].messages;
 
-    showMenu(i){
-      if(this.isShow[i] === false){
-        this.isShow[i] = true
-      }else{
-        this.isShow[i] = false
+        sent.push(sendMessage);
+
+        this.newMessage = "";
+
+        //imposto la funzione per rispondere dopo 2 secondi dall'invio del messaggio
+        setTimeout(() => {
+          const replyMessage = {
+            message: "Ehi, merdina!",
+            date: "xx/xx/xxxx 17:02:55",
+            status: "received",
+          };
+
+          sent.push(replyMessage);
+          this.newMessage = "";
+        }, 2000);
       }
     },
 
-    deleteMessage(i){
+
+    //creo una funzione in cui dichiaro che se l'array del menù a tendina (isShow)
+    //del messaggio corrispondente [i] è uguale a false (quindi non aperto)
+    //allora deve restare chiuso, altrimenti deve aprirsi
+    showMenu(i) {
+      if (this.isShow[i] === false) {
+        this.isShow[i] = true;
+      } else {
+        this.isShow[i] = false;
+      }
+    },
+
+    //creo una funzione in cui dichiaro che il messeggio corrispondente deve essere eliminato
+    //indicando che il menù a tendina non deve aprirsi per gli altri messaggi
+    //nel momento in cui il messaggio corrente è stato eliminato
+    deleteMessage(i) {
       this.contacts[this.currentContact].messages.splice(i, 1);
 
-      this.showMenu(i)
-    }
-  }
+      this.showMenu(i);
+    },
+  },
 }).mount("#app");
