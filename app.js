@@ -215,6 +215,11 @@ createApp({
       }
     },
 
+    
+    isVisible(contact){
+      return contact.name.toLowerCase().includes(this.search.toLowerCase())
+    },
+
 
     //creo una funzione in cui dichiaro che se l'array del menù a tendina (isShow)
     //del messaggio corrispondente [i] è uguale a false (quindi non aperto)

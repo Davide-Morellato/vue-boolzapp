@@ -62,9 +62,13 @@
                                  aggiungo l'evento al click per cambiare i messaggi
                                  aggiungo la classe .active per indicare quale contatto è stato selezionato -->
                             <!-- :class="i === currentContact ? 'active' : '' " -->
+                            <!-- contact.name.toLowerCase().includes(search.toLowerCase()) ? '' : 'hidden' -->
                             <li class="profile"
                             v-for="(contact, i) in contacts"                                                      
-                            :class="contact.name.toLowerCase().includes(search.toLowerCase()) ? '' : 'hidden'"
+                            :class="{
+                                active: i === currentContact,
+                                hidden: !isVisible(contact)
+                            }"
                             @click="currentContact = i"
                             >  
                                 <figure class="sidebar-profile">                                                                             
