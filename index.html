@@ -77,13 +77,34 @@
                                         <h4><strong>{{contact.name}}</strong></h4>
 
                                         <!-- prendo l'ultimo messaggio [.at(-1).message] nell'array di messages -->
-                                        <span class="font-lightgrey">  
+                                        <!-- posto come condizione per eliminare l'ultimo messaggio che:
+                                             SE (v-if) la lunghezza dell'array di messages del contatto corrente, diverso da 0
+                                                ALLORA stampa l'ultimo messaggio -->
+                                        <span class="font-lightgrey"
+                                        v-if="contact.messages.length !== 0">  
                                             {{contact.messages.at(-1).message}}
+                                        </span>
+                                        <!-- ALTRIMENTI (v-else) riporta la scritta 'La chat è vuota' -->
+                                        <span class="font-lightgrey" 
+                                        v-else>
+                                            La chat è vuota
                                         </span>
                                     </div>
                                 </figure>
+
                                 <!-- prendo l'ultimo orario [.at(-1).date.slice(11,16)] nell'array di messages -->
-                                <span class="font-lightgrey">{{contact.messages.at(-1).date.slice(11,16)}}</span>
+                                <!-- posto come condizione per eliminare l'ultimo messaggio che:
+                                     SE (v-if) la lunghezza dell'array di messages del contatto corrente, diverso da 0
+                                        ALLORA stampa l'orario dell'ultimo messaggio -->
+                                <span class="font-lightgrey"
+                                v-if="contact.messages.length !== 0">
+                                    {{contact.messages.at(-1).date.slice(11,16)}}
+                                </span>
+                                
+                                <!-- ALTRIMENTI (v-else) riporta la scritta 'La chat è vuota'-->
+                                <span class="font-lightgrey" v-else>
+                                    --:--
+                                </span>
                             </li>
                             <!-- <li>
                                 <figure class="sidebar-profile">
@@ -165,7 +186,20 @@
                             <img class="profile-img" :src="contacts[currentContact].avatar" :alt="contacts[currentContact].name">
                             <div class="profile-status">
                                 <h4><strong>{{contacts[currentContact].name}}</strong></h4>
-                                <span class="font-lightgrey">Ultimo accesso alle ore: {{contacts[currentContact].messages.at(-1).date.slice(11,16)}} </span>
+
+                                <!-- posto come condizione per eliminare l'ultimo messaggio che:
+                                     SE (v-if) la lunghezza dell'array di messages nell'array contacts con riferimento al contatto corrente, diverso da 0
+                                        ALLORA stampa l'orario dell'ultimo messaggio -->
+                                <span class="font-lightgrey"
+                                v-if="contacts[currentContact].messages.length !== 0">
+                                    Ultimo accesso alle ore: {{contacts[currentContact].messages.at(-1).date.slice(11,16)}}
+                                </span>
+
+                                <!-- ALTRIMENTI (v-else) riporta 'La chat è vuota --:--' -->
+                                <span class="font-lightgrey"
+                                v-else>
+                                    La chat è vuota --:--
+                                </span>
                             </div>
                             <ul class="tools-list">
                                 <li>
@@ -197,7 +231,7 @@
                                 </p>
                                 <span class="time pos-absolute font-lightgrey">{{currMessage.date.slice(11,16)}}</span>
 
-                                <!-- aggiungo l'evento click sull'icona per il menù a tendina -->
+                                <!-- aggiungo l'evento click sull'icona per il menù a tendina, richiamandomi la funzione showMenu(i) -->
                                 <span class="chevron-icon font-lightgrey pos-absolute" @click="showMenu(i)">
                                     <i class="fa-solid fa-chevron-down"></i>
 

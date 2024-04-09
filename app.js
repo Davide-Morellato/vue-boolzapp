@@ -215,7 +215,7 @@ createApp({
       }
     },
 
-    
+    //creo una funzione per asseganre al contatto corrente la classe hidden al momento della ricerca nella sidebar
     isVisible(contact){
       return contact.name.toLowerCase().includes(this.search.toLowerCase())
     },
